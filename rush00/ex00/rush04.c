@@ -19,16 +19,16 @@ void	aux_rush(int aux, int aux2, int x, int y)
 	{
 		if ((aux == 1 && aux2 == 1) || (aux == x && aux2 == y))
 		{
-			ft_putchar('/');
+			ft_putchar('A');
 		}
 		else if ((aux == x && aux2 == 1) || (aux == 1 && aux2 == y))
 		{
-			ft_putchar('\\');
+			ft_putchar('C');
 		}
 		else if (((aux == 1 || aux == x) && (aux2 > 1 || aux2 < y))
 			|| ((aux > 1 || aux < x) && (aux2 == 1 || aux2 == y)))
 		{
-			ft_putchar('*');
+			ft_putchar('B');
 		}
 		else
 		{
