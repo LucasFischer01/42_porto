@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_ft.c                                   :+:      :+:    :+:   */
+/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 01:01:38 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/03/16 01:41:25 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/16 22:05:30 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/16 22:40:46 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include<unistd.h>
 #include<stdio.h>
 
-void	ft_ultimate_ft(int *********nbr)
+void	ft_ultimate_div_mod(int *a, int *b)
 {
-	*********nbr = 42;
+	int	div;
+	int	mod;
+
+	div = *a / *b;
+	mod = *a % *b;
+	*a = div;
+	*b = mod;
 }
 /*
 int	main(void)
 {
-	int n;
-	int *p_nbr9;
-	int **p_nbr8;
-	int ***p_nbr7;
-	int ****p_nbr6;
-	int *****p_nbr5;
-	int ******p_nbr4;
-	int *******p_nbr3;
-	int ********p_nbr2;
-	int *********p_nbr1;
-
-	n = 20;
-	p_nbr9 = &n;
-	p_nbr8 = &p_nbr9;
-	p_nbr7 = &p_nbr8;
-	p_nbr6 = &p_nbr7;
-	p_nbr5 = &p_nbr6;
-	p_nbr4 = &p_nbr5;
-	p_nbr3 = &p_nbr4;
-	p_nbr2 = &p_nbr3;
-	p_nbr1 = &p_nbr2; 
+	int 	a;
+	int	b;
 	
-	ft_ultimate_ft(p_nbr1);
-	printf("%c\n", *********p_nbr1);
+	a = 98;
+	b = 45;
+	ft_ultimate_div_mod (&a, &b);
+	printf("Div = %d \n" "Res = %d \n", a, b);
 }*/
