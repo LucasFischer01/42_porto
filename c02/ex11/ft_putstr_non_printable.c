@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 21:44:41 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/03/22 21:44:45 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/25 18:02:29 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/25 18:02:31 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcapitalize(char *str)
-{
-	int	c;
-	int	i;
+#include <unistd.h>
 
-	c = 0;
+void	ft_putchar(char c)
+{
+	write (1, &c, 1);
+}
+
+void	ft_putstr_non_printable(char *str)
+{
+	int				i;
+	char			*converter;
+	unsigned char	tmp;
+
 	i = 0;
-	while (str[c] != '\0')
+	converter = "0123456789abcdef";
+	while (str[i] != '\0')
 	{
-		if (i == 0 && (str[c] >= 'a' && str[c] <= 'z'))
+		tmp = str[i];
+		if (!(tmp >= 32 && tmp <= 127))
 		{
-			str[c] -= 32;
-			i++;
+			ft_putchar('\\');
+			ft_putchar(converter[tmp / 16]);
+			ft_putchar(converter[tmp % 16]);
 		}
-		else if (i > 0 && (str[c] >= 'A' && str[c] <= 'Z'))
-			str[c] = str[c] + 32;
-		else if ((str[c] < '0') || (str[c] > '9' && str[c] < 'A'))
-			i = 0;
-		else if ((str[c] > 'Z' && str[c] < 'a') || (str[c] > 'z'))
-			i = 0;
 		else
-			i++;
-		c++;
+			ft_putchar(tmp);
+		i++;
 	}
-	return (str);
 }
