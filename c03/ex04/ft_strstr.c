@@ -9,39 +9,36 @@
 /*   Updated: 2023/03/23 22:03:01 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-char	*ft_strstr(char *str, char *to_find)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (to_find[j] == '\0')
-	{
-		return (str);
-	}
-	while (str[i] != '\0')
-	{
-		while (str[i + j] == to_find[j] && str[i + j] != '\0')
-		{
-			j++;
-		}
-		if (to_find[j] == '\0')
-		{
-			return (str + i);
-		}
-		i++;
-		j = 0;
-	}
-	return (str + i);
-}
-/*
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
 
-char *ft_strstr(char *str, char *to_find);
+char	*ft_strstr(char *str, char *to_find)
+{
+	int		i;
+	int		j;
+	bool	ndl;
 
+	if (to_find[0] == '\0')
+		return (str);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ndl = true;
+		j = 0;
+		while (to_find[j] != '\0' && ndl)
+		{
+			if (str[i + j] != to_find[j])
+				ndl = false;
+			j++;
+		}
+		if (ndl)
+			return (&str[i]);
+		i++;
+	}
+	return (0);
+}
+/*
 int		main(void)
 {
 	char str[] = "012340123456789";

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 02:11:08 by llopes-f          #+#    #+	#      */
-/*   Updated: 2023/03/23 02:11:10 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/25 19:06:39 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/25 19:06:43 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
+#include<stdio.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strlen(char *str)
 {
-	while (*s1 != '\0' && *s2 != '\0' && n > 0)
-	{
-		if (*s1 != *s2)
-		{
-			break ;
-		}
-		s1++;
-		s2++;
-		n--;
-	}
-	if (n == 0)
-	{
-		return (0);
-	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
