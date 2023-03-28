@@ -35,7 +35,7 @@ void	ft_putnbr(int nb)
 	else
 		ft_print(nb);
 }
-
+/*
 int	main(void)
 {
 	write(1, "-1: ", 4);
@@ -52,4 +52,4 @@ int	main(void)
 	ft_putnbr(INT_MIN);
 	write(1, "\n", 1);
 	return (0);
-}
+}*/
