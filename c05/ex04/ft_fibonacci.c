@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 21:13:58 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/03/28 21:14:00 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/29 21:14:08 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/29 21:14:11 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
-#include<unistd.h>
 
-int	ft_iterative_factorial(int nb)
+int	ft_fibonacci(int index)
 {
-	long int	result;
+	int	result;
 
-	result = 1;
-	if (nb < 0)
+	if (index == 0)
 		return (0);
-	if (nb == 0 || nb == 1)
+	if (index == 1)
 		return (1);
-	while (nb > 0)
+	if (index > 0)
 	{
-		result = result * nb;
-		nb --;
+		result = ft_fibonacci(index - 1) + ft_fibonacci(index - 2);
+		return (result);
 	}
-	return (result);
+	else
+		return (-1);
 }
 /*
 int	main(void)
 {
-	printf("O numero %d fatorial = %d", 15, ft_iterative_factorial(15));
+	int res;
+	int index;
+
+	index = 0;
+	while (index < 12)
+	{
+		res = ft_fibonacci(index);
+		printf ("%d, ", res);
+		index++;
+	}
+	res = ft_fibonacci(index);
+	printf ("%d\n", res);
+	return (0);
 }*/

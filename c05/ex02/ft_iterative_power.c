@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 21:13:58 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/03/28 21:14:00 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/29 18:52:25 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/29 18:52:28 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include<stdio.h>
 #include<unistd.h>
 
-int	ft_iterative_factorial(int nb)
+int	ft_iterative_power(int nb, int power)
 {
-	long int	result;
+	int	result;
 
 	result = 1;
-	if (nb < 0)
-		return (0);
-	if (nb == 0 || nb == 1)
-		return (1);
-	while (nb > 0)
-	{
+	while (power-- > 0)
 		result = result * nb;
-		nb --;
-	}
 	return (result);
 }
 /*
 int	main(void)
 {
-	printf("O numero %d fatorial = %d", 15, ft_iterative_factorial(15));
+	printf(" o numero %d a potencia %d e igual a %d", 2, 5, ft_iterative_power(2, 5));
 }*/
+
