@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 14:07:29 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/03/30 14:07:32 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/03/30 17:52:18 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/03/30 17:52:20 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include<unistd.h>
 
-#include<stdio.h>
-
-int	ft_sqrt(int nb)
+void	ft_putstr(char *str)
 {
-	int	n;
-
-	n = 1;
-	if (nb > 0)
+	while (*str)
 	{
-		while (n * n <= nb)
-		{
-			if (n * n == nb)
-				return (n);
-			else if (n >= 46341)
-				return (0);
-			n++;
-		}
+		write (1, str, 1);
+		str++;
 	}
-	return (0);
 }
-/*
-int	main(void)
+
+int	main(int argc, char **argv)
 {
-	printf("a raiz quadrada de 4 é: %d", ft_sqrt(4));
-}*/
+	int	i;
+
+	i = argc;
+	while (i > 1)
+	{
+		ft_putstr(argv[i - 1]);
+		i--;
+		write (1, "\n", 1);
+	}
+}
