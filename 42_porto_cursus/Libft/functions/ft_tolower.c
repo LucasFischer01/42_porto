@@ -10,4 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+int ft_tolower(int c)
+{
+        if (c >= 'A' && c <= 'Z')
+                return (c + ('a' - 'A'));
+        return (c);
+}
+/*#include <stdio.h>
+int main()
+{
+        printf("%c", ft_tolower('z'));
+}*/

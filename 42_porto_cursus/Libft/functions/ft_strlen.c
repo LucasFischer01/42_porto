@@ -9,5 +9,21 @@
 /*   Updated: 2023/04/13 20:17:49 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
+int ft_strlen(char *str)
+{
+        int i;
 
+        i = 0;
+        while (*str)
+        {
+                i++;
+                str++;
+        }
+        return (i);
+}
+/*int main()
+{
+        printf("%d", ft_strlen("a grande batatinha"));
+}*/

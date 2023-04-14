@@ -10,4 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+char *ft_strchr(const char *str, int c)
+{
+        while (*str)
+        {
+                if (*str == c)
+                        return (str);
+                else
+                        str++;
+        }
+}
+/*#include <string.h>
+#include <stdio.h>
+int main()
+{
+        printf("ft_strchr: %s\n", ft_strchr("abracadabra", 'l'));
+        printf("strchr: %s", strchr("abracadabra", 'l'));
+}*/
