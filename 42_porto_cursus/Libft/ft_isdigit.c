@@ -9,8 +9,7 @@
 /*   Updated: 2023/04/13 20:03:38 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include<stdio.h>
+#include"libft.h"
 
 int	ft_isdigit(unsigned int c)
 {

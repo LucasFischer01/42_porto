@@ -9,17 +9,7 @@
 /*   Updated: 2023/04/13 20:17:21 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-static int ft_strlen(char *src)
-{
-        int c;
-
-        c = 0;
-        while (src[c] != '\0')
-                c++;
-        return (c);
-}
-
+#include"libft.h"
 unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
 {
         unsigned int i;

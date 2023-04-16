@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 20:14:09 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/13 20:14:10 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/04/13 20:18:36 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/04/13 20:18:37 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include<stdio.h>
-
-int	ft_isascii(unsigned int c)
+int     ft_toupper(int c)
 {
-	return (c >= 0 && c <= 127);
+        if (c >= 'a' && c <= 'z')
+                return (c - ('a' - 'A'));
+        return (c);
 }
-/*int	main()
+/*
+int main()
 {
-	if (ft_isascii('a'))
-		printf("sucess");
-	else
-		printf("fail");
+        printf("%c", ft_toupper('B'));
 }*/

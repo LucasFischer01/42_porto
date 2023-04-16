@@ -9,8 +9,7 @@
 /*   Updated: 2023/04/13 20:14:36 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include<stdio.h>
+#include"libft.h"
 
 int	ft_isprint(unsigned int c)
 {

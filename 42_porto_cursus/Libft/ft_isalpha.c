@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 20:13:35 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/13 20:13:37 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/04/13 18:56:26 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/04/13 18:56:28 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include<stdio.h>
-
-int	ft_isalnum(unsigned int c)
+int	ft_isalpha(unsigned int c)
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'));
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 /*int	main()
 {
-	if (ft_isalnum ('/'))
+	if (ft_isalpha('a'))
 		printf("sucess");
 	else
 		printf("fail");

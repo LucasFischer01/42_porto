@@ -9,7 +9,7 @@
 /*   Updated: 2023/04/13 20:12:33 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include"libft.h"
 
 int ft_atoi(const char *str)
 {
@@ -18,7 +18,7 @@ int ft_atoi(const char *str)
 
         result = 0;
         sign = 1;
-        while (*str == ' ' || (*str >= 7 && *str <= 13))
+        while (*str == ' ' || (*str >= 9 && *str <= 13))
                 str++;
         if (*str == '-' || *str == '+')
         {
@@ -33,10 +33,8 @@ int ft_atoi(const char *str)
         }
         return (result * sign);
 }
-#include <stdlib.h>
-
-int main()
+/*int main()
 {
-        printf("atoi = %d \n", atoi("  +347656745465"));
-        printf("ft_atoi = %d", ft_atoi("  +347656745465"));
-}
+        printf("atoi = %d \n", atoi("  -2147483648"));
+        printf("ft_atoi = %d", ft_atoi("  -2147483648"));
+}*/

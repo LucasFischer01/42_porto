@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 20:17:48 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/13 20:17:49 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/04/13 20:14:09 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/04/13 20:14:10 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include"libft.h"
 
-int ft_strlen(char *str)
+int	ft_isascii(unsigned int c)
 {
-        int i;
-
-        i = 0;
-        while (*str)
-        {
-                i++;
-                str++;
-        }
-        return (i);
+	return (c >= 0 && c <= 127);
 }
-/*int main()
+/*int	main()
 {
-        printf("%d", ft_strlen("a grande batatinha"));
+	if (ft_isascii('a'))
+		printf("sucess");
+	else
+		printf("fail");
 }*/
