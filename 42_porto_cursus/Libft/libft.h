@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:55:14 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/15 19:55:16 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:41:24 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -39,7 +40,9 @@ void    *memchr(const void *str, int c, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_calloc(size_t numb, size_t size);
 void    ft_bzero(void *s, size_t n);
-
+char    *ft_strdup(const char *s);
+void    ft_putchar_fd(char c, int fd);
+void    ft_putstr_fd(char *s, int fd);
 
 
 #endif
