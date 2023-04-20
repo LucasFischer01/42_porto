@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:55:14 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/20 18:41:24 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/04/20 19:27:39 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    ft_bzero(void *s, size_t n);
 char    *ft_strdup(const char *s);
 void    ft_putchar_fd(char c, int fd);
 void    ft_putstr_fd(char *s, int fd);
+void    ft_putendl_fd(char *s, int fd);
 
 
 #endif
