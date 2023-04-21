@@ -11,26 +11,23 @@
 /* ************************************************************************** */
 #include"libft.h"
 
-char    *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-        char    *cpy;
+	char	*cpy;
 
-        cpy = ft_calloc(1, ft_strlen(s) + 1);
-        return (ft_memcpy(cpy, s, ft_strlen(s)));
-}       
+	cpy = ft_calloc(1, ft_strlen(s) + 1);
+	return (ft_memcpy(cpy, s, ft_strlen(s)));
+}
 /*int main() {
-    char* str = "Sopa de Galinha rocks!!";
-    char* copy = ft_strdup(str);
-    
-    if (copy == NULL) {
-        printf("Failed to allocate memory.\n");
-        return 1;
-    }
-    
-    printf("Original string: %s\n", str);
-    printf("Copied string: %s\n", copy);
-    
-    free(copy);
-    
-    return 0;
+	char* str = "Sopa de Galinha rocks!!";
+	char* copy = ft_strdup(str);
+
+	if (copy == NULL) {
+		printf("Failed to allocate memory.\n");
+		return 1;
+	}
+	printf("Original string: %s\n", str);
+	printf("Copied string: %s\n", copy);
+	free(copy);
+	return 0;
 }*/

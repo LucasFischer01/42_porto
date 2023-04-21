@@ -12,13 +12,13 @@
 
 #include"libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-        unsigned char   *str;
+	unsigned char	*str;
 
-        str = malloc(len);
-        while (len--)
-        {
-                ft_strnstr(*s, start, len);
-        }
+	str = malloc(len);
+	while (len--)
+	{
+		ft_strnstr(*s, start, len);
+	}
 }
