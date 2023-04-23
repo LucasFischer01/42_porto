@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 20:15:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/21 19:55:35 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/04/22 22:54:35 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/04/23 01:21:06 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*str;
-	unsigned char	*str2;
-	size_t			i;
+	char	*dest;
+	int		i;
+	int		j;
 
-	str = (unsigned char *) s1;
-	str2 = (unsigned char *) s2;
 	i = 0;
-	while (i < n)
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	dest = malloc(sizeof (char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!dest)
+		return (NULL);
+	while (s1[i])
 	{
-		if (str[i] != str2[i])
-			return (str[i] - str2[i]);
+		dest[i] = s1[i];
 		i++;
 	}
-	return (0);
+	while (s2[j])
+		dest[i++] = s2[j++];
+	dest[i] = '\0';
+	return (dest);
 }

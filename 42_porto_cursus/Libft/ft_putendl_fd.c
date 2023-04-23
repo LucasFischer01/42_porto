@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:45:53 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/20 18:48:12 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:23:53 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putstr_fd(*s, fd);
-	write (1, '\n', 1);
+	if (s != NULL)
+	{
+		ft_putstr_fd((char *)s, fd);
+		ft_putchar_fd('\n', fd);
+	}
 }

@@ -6,20 +6,18 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:16:26 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/21 19:51:59 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:02:51 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include"libft.h"
 
 char	*ft_strchr(const char *str, int c)
 {
-	while (*str)
-	{
-		if (*str == c)
-			return ((char *)str);
-		else
-			str++;
-	}
+	while (*str && (unsigned char)c != *str)
+		str++;
+	if (*str == c)
+		return ((char *)str);
 	return (0);
 }
 /*int main()
