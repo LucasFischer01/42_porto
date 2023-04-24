@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:55:14 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/23 06:32:13 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:38:27 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcat(char *dest, char *src, unsigned int size);
 char	*ft_itoa(int n);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_strchr(const char *str, int c);
@@ -40,6 +41,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(const char *s);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memchr(const void *str, int c, size_t n);
