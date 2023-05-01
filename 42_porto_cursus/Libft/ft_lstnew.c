@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 16:31:41 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/29 16:46:17 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/01 18:15:48 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = (t_list *) malloc (sizeof (t_list));
+	new = malloc(sizeof (t_list));
 	if (!new)
 		return (NULL);
 	new->content = content;

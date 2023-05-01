@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:16:43 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/29 18:06:32 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:30:10 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (*lst == NULL)
 	{
 		*lst = new;
-		return;
+		return ;
 	}
 	temp = *lst;
 	while (temp->next)

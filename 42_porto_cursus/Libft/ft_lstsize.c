@@ -6,18 +6,19 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 17:02:34 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/04/29 17:08:38 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/01 13:44:51 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
+
 	i = 0;
 	if (!lst)
-		return(0);
+		return (0);
 	while (lst)
 	{
 		i++;
