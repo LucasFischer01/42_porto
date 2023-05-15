@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:22:32 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/05 22:29:00 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 18:24:26 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define GET_NEXT_LINE_H
 
 //	   		Headers				 //
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
 
-//			Functions			//
+//			Structs			//
+
 typedef	struct	s_line
 {
 	char	line;
@@ -28,5 +30,9 @@ typedef	struct	s_line
 	long	index;
 	ssize_t	size_buffer;
 }	t_line;	
+
+//			Functions			//
+
+size_t	ft_strlen(const char *str);
 
 #endif

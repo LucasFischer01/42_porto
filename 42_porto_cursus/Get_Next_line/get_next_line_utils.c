@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:23:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/05 20:38:05 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:31:17 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-/*int	main()
+void	ft_bzero(void *s, size_t n)
 {
-	printf("%d",(ft_strlen("abracadabra")));
-}*/
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n--)
+		*str++ = 0;
+}
+
+int	main()
+{
+	printf("%d ",(ft_strlen("abracadabra")));
+}
