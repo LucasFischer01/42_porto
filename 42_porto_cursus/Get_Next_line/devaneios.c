@@ -1,4 +1,10 @@
 while (buffer_in != '/n')
 {
-	write (1, (int)buffer_in, buffer_size);
+	
+}
+
+char	*get_next_line(int fd)
+{
+	if (fd == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
 }

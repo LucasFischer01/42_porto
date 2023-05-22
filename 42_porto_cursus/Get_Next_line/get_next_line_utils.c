@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:23:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/17 20:30:35 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/22 19:04:43 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,3 @@ void	ft_calloc(size_t numb, size_t size)
 	ft_bzero(dest, full_size);
 	return (dest);
 }
-/*
-int	main()
-{
-	printf("%d ",(ft_strlen("abracadabra")));
-}*/
