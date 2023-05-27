@@ -10,36 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t ft_strlen(const char *str)
 {
-	size_t	i;
+        size_t i;
 
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+        i = 0;
+        while (*str++)
+                i++;
+        return (i);
 }
 
-void	ft_bzero(void *s, size_t n)
+void ft_bzero(void *s, size_t n)
 {
-	unsigned char	*str;
+        unsigned char *str;
 
-	str = (unsigned char *)s;
-	while (n--)
-		*str++ = 0;
+        str = (unsigned char *)s;
+        while (n--)
+                *str++ = 0;
 }
 
-void	ft_calloc(size_t numb, size_t size)
+void *ft_calloc(size_t numb, size_t size)
 {
-	void	*dest;
-	size_t	full_size;
+        void *dest;
+        size_t full_size;
 
-	full_size = size * numb;
-	dest = malloc (full_size);
-	if (dest == NULL)
-		return (NULL);
-	ft_bzero(dest, full_size);
-	return (dest);
+        full_size = size * numb;
+        dest = malloc(full_size);
+        if (dest == NULL)
+                return (NULL);
+        ft_bzero(dest, full_size);
+        return (dest);
 }

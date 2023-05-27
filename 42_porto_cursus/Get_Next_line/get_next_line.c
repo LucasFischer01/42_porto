@@ -10,62 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include "get_next_line.h"
 
-/*char	ft_reciclenprint_buffer(unsigned char *buffer_in)
+ft_read(int fd, char *buffer, char *stash)
 {
-	static char	*buffer_out;
-	int			i;
+        int i;
+        int j;
+        char *line;
+        char *temp;
 
-	i = 0;
-	
-	while (buffer_in[i++] != '\n')
-	{if (fd == -1)
-	{
-		printf("Erro ao abrir o arquivo");
-		return (1);
-	}
-		write(1, buffer_in[i], 1);
-	}
-	while (buffer_in[i++] != '\0')
-		*buffer_out++ = buffer_in[i];
+        j = 0;
+        i = 0;
+        buffer = read(fd, buffer, BUFFER_SIZE);
+        if (buffer == -1)
+                return (NULL);
+        while (buffer[i] != '\n' && buffer[i] != '\0')
+                stash[i] = buffer[i++];
+        line = (char *)malloc((i + 1) * sizeof(char));
+        while (j < i)
+                line[j] = stash[j++];
+        line[j] = '\0';
+        temp = (char *)malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
+        j = 0;
+        while (buffer[i] != '\0')
+                temp[j++] = buffer[i++];
+        free(stash);
+        stash = temp;
+        free(temp);
+        return (line);
 }
 
 char *get_next_line(int fd)
 {
-	
-}
-*/
-int	main()
-{
-	char buf[4];
-	int	fd;
+        static char *stash;
+        char *buffer;
 
-	fd = open("teste.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Erro ao abrir o arquivo");
-		return (1);
-	}
-	//printf("Deu certo!");
-	 ssize_t bytes_lidos = read(fd, buf, sizeof(buf));
-    if (bytes_lidos == -1) {
-        perror("read");
-        exit(1);
-    }
-    printf("Bytes lidos: %ld\n", bytes_lidos);
-    printf("Dados lidos: %.*s\n", (int)bytes_lidos, buf);
-	bytes_lidos = read(fd, buf, sizeof(buf));
-    if (bytes_lidos == -1) {
-        perror("read");
-        exit(1);
-    }
-    printf("Bytes lidos: %ld\n", bytes_lidos);
-    printf("Dados lidos: %.*s\n", (int)bytes_lidos, buf);
-
-	//get_next_line(fd);
-
-
-	close(fd);
-	return 0;
+        buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+        if (fd < 0 || BUFFER_SIZE <= 0)
+                return (NULL);
 }
