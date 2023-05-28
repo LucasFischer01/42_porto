@@ -6,46 +6,81 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/17 20:32:00 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:41:06 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-ft_read(int fd, char *buffer, char *stash)
+char    *new_line(char *stash, char *buffer,int bytes_read, int i)
 {
-        int i;
-        int j;
-        char *line;
-        char *temp;
+        char    *temp;
+        char    *line;
+        int     j;
 
         j = 0;
-        i = 0;
-        buffer = read(fd, buffer, BUFFER_SIZE);
-        if (buffer == -1)
-                return (NULL);
-        while (buffer[i] != '\n' && buffer[i] != '\0')
-                stash[i] = buffer[i++];
-        line = (char *)malloc((i + 1) * sizeof(char));
-        while (j < i)
-                line[j] = stash[j++];
-        line[j] = '\0';
-        temp = (char *)malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
-        j = 0;
-        while (buffer[i] != '\0')
-                temp[j++] = buffer[i++];
-        free(stash);
-        stash = temp;
-        free(temp);
-        return (line);
+        stash = ft_calloc ((ft_strlen(stash) + bytes_read + 1), sizeof (char));
+        stash = ft_strjoin( stash, buffer);
+        while (stash [i] != '\n' && stash[i] != '\0')
+                i++;
+        if (stash[i] == '\n')
+        {
+                line = ft_calloc(i + 1, sizeof(char));
+                ft_memcpy(line, stash, i + 1);
+                temp = ft_calloc(ft_strlen(stash) - i + 1, sizeof(char));
+                while (stash[i] != '\0')
+                        temp[j++] = stash[i++];
+                temp[j] = '\0';
+                free(stash);
+                stash = temp;
+                free (temp);
+                i = 0;
+                return (line);
+        }
+        else if (!buffer_read)
+                return;
+        else 
+        {
+                line = ft_calloc(i + 1, sizeof(char));
+                ft_memcpy(line, stash, i);
+                i = 0;
+                return (line);
+        }  
 }
 
-char *get_next_line(int fd)
+int     buffer_read (int bytes_read, int i)
+{
+        return (bytes_read = BUFFER_SIZE);
+}
+
+char    ft_read(int fd, char *buffer, char *stash, int i)
+{
+       int      bytes_read;
+       char     *line;
+
+        bytes_read = read(fd, buffer, BUFFER_SIZE);
+        if (bytes_read < 0 || buffer < 0)
+               return(NULL);
+        while (buffer_read > 0)
+        {
+                line = new_line(stash, buffer, bytes_read, i);
+        }
+        line = new_line(stash, buffer, bytes_read, i);
+        return (line);
+
+}
+
+char    *get_next_line(int fd)
 {
         static char *stash;
         char *buffer;
+        static int      i;
 
-        buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+        i = 0;
         if (fd < 0 || BUFFER_SIZE <= 0)
                 return (NULL);
+        buffer = ft_calloc(BUFFER_SIZE + 1, sizeof (char));
+        if (!buffer)
+               return(NULL);
+        return (ft_read(fd, buffer, stash, i));
 }
