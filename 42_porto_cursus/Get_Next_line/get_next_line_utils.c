@@ -6,20 +6,25 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:23:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/28 20:33:27 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:16:34 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *str)
+size_t ft_strlen(const char *str, char c)
 {
         size_t i;
 
         i = 0;
-        while (*str++)
-                i++;
-        return (i);
+        while (str++)
+		{
+        	if (str[i] == c)
+        		return (i);
+			else
+				return (NULL);
+			i++;
+		}
 }
 
 void ft_bzero(void *s, size_t n)
@@ -70,7 +75,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	dest = malloc(sizeof (char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	dest = malloc(sizeof (char) * (ft_strlen(s1, '\0') + ft_strlen(s2,'\0')) + 1);
 	if (!dest)
 		return (NULL);
 	while (s1[i])

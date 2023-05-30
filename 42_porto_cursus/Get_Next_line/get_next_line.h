@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:22:32 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/28 19:45:15 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:16:32 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef	struct	s_line
 
 //			Functions			//
 
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen(const char *str, char c);
 void	*ft_calloc(size_t numb, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
