@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/30 19:16:33 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:19:45 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char    ft_read(int fd, char *buffer, char *stash, int i)
         bytes_read = read(fd, buffer, BUFFER_SIZE);
         if (bytes_read < 0 || buffer < 0)
                return(NULL);
-        while (buffer_read > 0)
+        while (buffer_read)
         {
                 line = new_line(stash, buffer, bytes_read, i);
         }
