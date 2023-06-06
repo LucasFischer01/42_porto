@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/31 20:19:45 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:30:12 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char    *get_next_line(int fd)
 {
         static char *stash;
         char *buffer;
-        static int      i;
+        int      i;
 
         i = 0;
         if (fd < 0 || BUFFER_SIZE <= 0)

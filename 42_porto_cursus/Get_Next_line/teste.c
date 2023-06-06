@@ -1,5 +1,7 @@
 #include "get_next_line.h"
 
+/*copia stash ate  \n, aloca o resto em tmp,  limpa o stash, volta o que 
+at'e '\0' para o stash, limpa o tmp e retorna line*/
 char    ft_newline (char *stash,char *line)
 {
     int     j;
@@ -11,7 +13,7 @@ char    ft_newline (char *stash,char *line)
     if (!tmp)
         return (NULL);
     while (stash[j] != '\0')
-        stash[j] = tmp++;
+        *tmp++ = stash[j];
     tmp = '\0';
     free (stash);
     stash = tmp;
@@ -19,7 +21,9 @@ char    ft_newline (char *stash,char *line)
     return (line);
   
 }
-
+/* A funcao stash_storage aloca a memoria para o stash, considerando o size
+atual + buffer, limpa o buffer, pecorre o stash buscando \n, se tiver chama ft_newline,
+se nao chama read de novo*/
 char    stash_storage (int bytes_read, char *stash, char *buffer, int i)
 {
     char    *line;
@@ -30,16 +34,15 @@ char    stash_storage (int bytes_read, char *stash, char *buffer, int i)
     if (!stash)
         return (NULL);
     stash = ft_strjoin(stash, buffer);
+    free(buffer);
     len = ft_strlen(stash, '\0');
-    while (i++ < len)
+    while (i++ <= len)
+    {
         if (stash[i] == '\n')
-            line = ft_newline(stash, i);
-            return (line);
-        else
-        {
-            free(buffer);
-            ft_read();
-        }
+            return (ft_newline(stash, line));
+    }
+    if (stash[i] == '\0')
+        ft_read();
 }
 
 

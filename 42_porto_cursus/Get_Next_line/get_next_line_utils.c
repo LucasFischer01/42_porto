@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:23:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/05/30 19:16:34 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:30:08 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ size_t ft_strlen(const char *str, char c)
 		{
         	if (str[i] == c)
         		return (i);
-			else
-				return (NULL);
 			i++;
 		}
+		return (0);
 }
 
 void ft_bzero(void *s, size_t n)
