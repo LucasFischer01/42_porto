@@ -1,86 +1,86 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/06 19:30:12 by llopes-f         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-char    *new_line(char *stash, char *buffer,int bytes_read, int i)
+/*copia stash ate  \n, aloca o resto em tmp,  limpa o stash, volta o que 
+at'e '\0' para o stash, limpa o tmp e retorna line*/
+char    *ft_newline (char *stash)
 {
-        char    *temp;
-        char    *line;
-        int     j;
+    int     j;
+    int     i;
+    char    *line;
+    char    *tmp;
 
-        j = 0;
-        stash = ft_calloc ((ft_strlen(stash) + bytes_read + 1), sizeof (char));
-        stash = ft_strjoin( stash, buffer);
-        while (stash [i] != '\n' && stash[i] != '\0')
-                i++;
+    i = 0;
+    j = ft_strlen(stash, '\n') + 1;
+    line = ft_calloc(j, sizeof(char));
+    ft_memcpy(line, stash, j);
+    tmp = ft_calloc(ft_strlen(stash, '\0') - j, sizeof(char));
+    if (!tmp)
+        return (NULL);
+    while (stash[j] != '\0')
+        tmp[i++] = stash[j++];
+    tmp = '\0';
+    free (stash);
+    stash = tmp;
+    free(tmp);
+    return(line);  
+}
+/* A funcao stash_storage aloca a memoria para o stash, considerando o size
+atual + buffer, limpa o buffer, pecorre o stash buscando \n, se tiver chama ft_newline,
+se nao chama read de novo*/
+void    stash_storage (char *stash, char *buffer, int i, int fd)
+{
+    int     len;
+
+    stash = ft_calloc((ft_strlen(stash, '\0') + BUFFER_SIZE + 1), sizeof(char));
+    exit(0);
+    if (!stash)
+        return ;
+    stash = ft_strjoin(stash, buffer);
+    len = ft_strlen(stash, '\0');
+    while (i++ <= len)
+    {
         if (stash[i] == '\n')
-        {
-                line = ft_calloc(i + 1, sizeof(char));
-                ft_memcpy(line, stash, i + 1);
-                temp = ft_calloc(ft_strlen(stash) - i + 1, sizeof(char));
-                while (stash[i] != '\0')
-                        temp[j++] = stash[i++];
-                temp[j] = '\0';
-                free(stash);
-                stash = temp;
-                free (temp);
-                i = 0;
-                return (line);
-        }
-        else if (!buffer_read)
-                return;
-        else 
-        {
-                line = ft_calloc(i + 1, sizeof(char));
-                ft_memcpy(line, stash, i);
-                i = 0;
-                return (line);
-        }  
+            ft_newline(stash);
+    }
+    if (stash[i] == '\0')
+        ft_read(fd, buffer, stash, i);
 }
 
-int     buffer_read (int bytes_read, int i)
+void    *ft_read (int fd, char *buffer, char *stash, int i)
 {
-        return (bytes_read = BUFFER_SIZE);
+    int     bytes_read;
+
+    bytes_read = read(fd, buffer, BUFFER_SIZE);
+    if (bytes_read <= 0 || !buffer)
+        return (NULL);
+    if (bytes_read <= BUFFER_SIZE && bytes_read != 0)
+        stash_storage(stash, buffer, i, fd);
+    return (NULL);
 }
 
-char    ft_read(int fd, char *buffer, char *stash, int i)
+char *get_next_line(int fd)
 {
-       int      bytes_read;
-       char     *line;
+    static char *stash;
+    char        *buffer;
+    int         i;
 
-        bytes_read = read(fd, buffer, BUFFER_SIZE);
-        if (bytes_read < 0 || buffer < 0)
-               return(NULL);
-        while (buffer_read)
-        {
-                line = new_line(stash, buffer, bytes_read, i);
-        }
-        line = new_line(stash, buffer, bytes_read, i);
-        return (line);
-
+    i = 0;
+    if (fd < 0 || BUFFER_SIZE <= 0 )
+        return (NULL);
+    buffer = ft_calloc(BUFFER_SIZE + 1, sizeof (char));
+    if (!buffer)
+        return (NULL);
+    return (ft_read (fd, buffer, stash, i));
 }
 
-char    *get_next_line(int fd)
+int main()
 {
-        static char *stash;
-        char *buffer;
-        int      i;
+    int fd;
+    char *line;
 
-        i = 0;
-        if (fd < 0 || BUFFER_SIZE <= 0)
-                return (NULL);
-        buffer = ft_calloc(BUFFER_SIZE + 1, sizeof (char));
-        if (!buffer)
-               return(NULL);
-        return (ft_read(fd, buffer, stash, i));
+    fd = open("teste.c", O_RDONLY);
+    line = get_next_line(fd);
+    printf("%s\n", line);
+    close(fd);
+    return (0);
 }
