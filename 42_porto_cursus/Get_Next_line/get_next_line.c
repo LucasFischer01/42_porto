@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/11 02:01:45 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/06/11 02:01:52 by llopes-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "get_next_line.h"
 
 /*copia stash ate  \n, aloca o resto em tmp,  limpa o stash, volta o que 
@@ -16,11 +29,15 @@ char    *ft_newline (char *stash)
     tmp = ft_calloc(ft_strlen(stash, '\0') - j, sizeof(char));
     if (!tmp)
         return (NULL);
+    printf("tmp :%s\n", tmp);
     while (stash[j] != '\0')
         tmp[i++] = stash[j++];
     tmp = '\0';
+    printf("stash :%s\n", stash);
+    printf("tmp :%s\n", tmp);
     free (stash);
     stash = tmp;
+    printf("new_stash :%s\n", stash);
     free(tmp);
     return(line);  
 }
@@ -78,7 +95,7 @@ int main()
     int fd;
     char *line;
 
-    fd = open("teste.c", O_RDONLY);
+    fd = open("teste.txt", O_RDONLY);
     line = get_next_line(fd);
     printf("%s\n", line);
     close(fd);
