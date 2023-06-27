@@ -6,85 +6,47 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:23:01 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/10 21:58:59 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:03:10 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include"get_next_line.h"
 
-size_t ft_strlen(const char *str, char c)
+size_t	ft_strlen(const char *str )
 {
-        size_t i;
-
-        i = 0;
-        while (str[i])
-		{
-        	if(str[i] == c)
-				return (i);
-			i++;
-		}
-		return (i);
-}
-
-void ft_bzero(void *s, size_t n)
-{
-        unsigned char *str;
-
-        str = (unsigned char *)s;
-        while (n--)
-                *str++ = 0;
-}
-
-void	*ft_calloc(size_t numb, size_t size)
-{
-        void *dest;
-        size_t full_size;
-
-        full_size = size * numb;
-        dest = malloc(full_size);
-        if (dest == NULL)
-                return (NULL);
-        ft_bzero(dest, full_size);
-        return (dest);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	
-	if (!dest && !src)
-		return (dest);
-	d = dest;
-	s = src;
-	while (n--)
-	{
-		*d++ = *s++;
-	}
-	return (dest);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*dest;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	dest = malloc(sizeof (char) * (ft_strlen(s1, '\0') + ft_strlen(s2,'\0')) + 1);
-	if (!dest)
-		return (NULL);
-	while (s1[i])
-	{
-		dest[i] = s1[i];
+	if (!str)
+		return (0);
+	while (str[i] && str[i] != '\n')
 		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		v;
+	char	*newstr;
+
+	i = 0;
+	v = 0;
+	newstr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!newstr)
+		return (NULL);
+	while (s1 && s1[v])
+		newstr[i++] = s1[v++];
+	v = 0;
+	while (s2 && s2[v])
+	{
+		newstr[i] = s2[v++];
+		if (newstr[i++] == '\n')
+			break ;
 	}
-	while (s2[j])
-		dest[i++] = s2[j++];
-	dest[i] = '\0';
-	return (dest);
+	newstr[i] = '\0';
+	free (s1);
+	return (newstr);
 }

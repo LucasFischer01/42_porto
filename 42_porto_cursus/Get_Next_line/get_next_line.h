@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 20:22:32 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/11 03:33:34 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:42:55 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,15 @@
 # include <string.h>
 # include <fcntl.h>
 
-//			Structs				//
-
-typedef	struct	s_line
-{
-	char	line;
-	ssize_t	size_line;
-	long	index;
-	ssize_t	size_buffer;
-}	t_line;	
-
 //			Buffer				//
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 42
-#endif
+#  define BUFFER_SIZE 42
+# endif
 
 //			Functions			//
-
-size_t	ft_strlen(const char *str, char c);
-void	*ft_calloc(size_t numb, size_t size);
-void	ft_bzero(void *s, size_t n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
-char    *ft_newline (char **stash);
-char    *stash_storage (char *stash, char *buffer, int i, int fd);
-void    *ft_read (int fd, char *buffer, char *stash, int i);
-char *get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_cleaning(char *str);
 
 #endif

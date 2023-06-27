@@ -5,99 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/11 02:01:45 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/11 02:01:52 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/06/27 14:39:01 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include"get_next_line.h"
 
-#include "get_next_line.h"
-
-/*copia stash ate  \n, aloca o resto em tmp,  limpa o stash, volta o que 
-at'e '\0' para o stash, limpa o tmp e retorna line*/
-char    *ft_newline (char *stash)
+int	ft_cleaning(char *str)
 {
-    int     j;
-    int     i;
-    char    *line;
-    char    *tmp;
+	size_t	i;
+	size_t	j;
+	int		nl;
 
-    i = 0;
-    j = ft_strlen(stash, '\n') + 1;
-    line = ft_calloc(j, sizeof(char));
-    ft_memcpy(line, stash, j);
-    tmp = ft_calloc(ft_strlen(stash, '\0') - j, sizeof(char));
-    if (!tmp)
-        return (NULL);
-    printf("tmp :%s\n", tmp);
-    while (stash[j] != '\0')
-        tmp[i++] = stash[j++];
-    tmp = '\0';
-    printf("stash :%s\n", stash);
-    printf("tmp :%s\n", tmp);
-    free (stash);
-    stash = tmp;
-    printf("new_stash :%s\n", stash);
-    free(tmp);
-    return(line);  
-}
-/* A funcao stash_storage aloca a memoria para o stash, considerando o size
-atual + buffer, limpa o buffer, pecorre o stash buscando \n, se tiver chama ft_newline,
-se nao chama read de novo*/
-void    stash_storage (char *stash, char *buffer, int i, int fd)
-{
-    int     len;
-
-    stash = ft_calloc((ft_strlen(stash, '\0') + BUFFER_SIZE + 1), sizeof(char));
-    exit(0);
-    if (!stash)
-        return ;
-    stash = ft_strjoin(stash, buffer);
-    len = ft_strlen(stash, '\0');
-    while (i++ <= len)
-    {
-        if (stash[i] == '\n')
-            ft_newline(stash);
-    }
-    if (stash[i] == '\0')
-        ft_read(fd, buffer, stash, i);
+	i = 0;
+	j = 0;
+	nl = 0;
+	while (str[i])
+	{
+		if (nl)
+			str[j++] = str[i];
+		if (str[i] == '\n')
+			nl = 1;
+		str[i] = '\0';
+		i++;
+	}
+	return (nl);
 }
 
-void    *ft_read (int fd, char *buffer, char *stash, int i)
+char	*get_next_line(int fd)
 {
-    int     bytes_read;
+	static char	buffer [FOPEN_MAX][BUFFER_SIZE + 1];
+	char		*line;
 
-    bytes_read = read(fd, buffer, BUFFER_SIZE);
-    if (bytes_read <= 0 || !buffer)
-        return (NULL);
-    if (bytes_read <= BUFFER_SIZE && bytes_read != 0)
-        stash_storage(stash, buffer, i, fd);
-    return (NULL);
-}
-
-char *get_next_line(int fd)
-{
-    static char *stash;
-    char        *buffer;
-    int         i;
-
-    i = 0;
-    if (fd < 0 || BUFFER_SIZE <= 0 )
-        return (NULL);
-    buffer = ft_calloc(BUFFER_SIZE + 1, sizeof (char));
-    if (!buffer)
-        return (NULL);
-    return (ft_read (fd, buffer, stash, i));
-}
-
-int main()
-{
-    int fd;
-    char *line;
-
-    fd = open("teste.txt", O_RDONLY);
-    line = get_next_line(fd);
-    printf("%s\n", line);
-    close(fd);
-    return (0);
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = NULL;
+	while (buffer[fd][0] || read(fd, buffer[fd], BUFFER_SIZE) > 0)
+	{
+		line = ft_strjoin(line, buffer[fd]);
+		if (ft_strlen(buffer[fd]) == 0)
+			return (line);
+		if (ft_cleaning(buffer[fd]) == 1)
+			break ;
+		if (read(fd, buffer[fd], 0) < 0)
+		{
+			free (line);
+			return (NULL);
+		}	
+	}
+	return (line);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/26 20:03:09 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:40:57 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 
 int	ft_cleaning(char *str)
 {
@@ -23,7 +23,7 @@ int	ft_cleaning(char *str)
 	nl = 0;
 	while (str[i])
 	{
-		if (nl == 1)
+		if (nl)
 			str[j++] = str[i];
 		if (str[i] == '\n')
 			nl = 1;
@@ -38,8 +38,7 @@ char	*get_next_line(int fd)
 	static char	buffer [FOPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX
-		|| read(fd, buffer[fd], 0) < 0)
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	while (buffer[fd][0] || read(fd, buffer[fd], BUFFER_SIZE) > 0)
