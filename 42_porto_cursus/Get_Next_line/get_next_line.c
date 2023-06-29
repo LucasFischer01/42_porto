@@ -6,7 +6,7 @@
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:40:49 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/06/27 14:39:01 by llopes-f         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:07:28 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_next_line(int fd)
 			return (line);
 		if (ft_cleaning(buffer[fd]) == 1)
 			break ;
-		if (read(fd, buffer[fd], 0) < 0)
+		if (read(fd, buffer[fd], BUFFER_SIZE) < 0)
 		{
 			free (line);
 			return (NULL);
