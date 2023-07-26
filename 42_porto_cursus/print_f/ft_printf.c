@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fischer <fischer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:06:26 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/07/26 19:48:28 by fischer          ###   ########.fr       */
+/*   Updated: 2023/07/26 19:48:27 by fischer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "ft_printf.h"
 
-//		Libraries	//
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-
-typedef struct s_data
+static void ft_putchar(const char c, t_data *st)
 {
-        int counter;
-        int index;
-        //        void temp;
-        unsigned int base_reference;
-} t_data;
+        st->counter += write(1, &c, 1);
+}
+static void ft_putstr(const char *s, t_data *st)
+{
+        if (!s)
+                return (ft_putstr("(null)", st));
+        while (*s)
+                ft_putchar(*s++, st);
+}
 
-static void ft_putchar(const char c, t_data *st);
-static void hex_cv(unsigned long nb, t_data *st);
-
-#endif
+static void ft_numbers(unsigned long nb, int fmt, t_data *st)
+{
+}
