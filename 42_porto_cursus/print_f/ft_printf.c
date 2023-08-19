@@ -6,24 +6,31 @@
 /*   By: fischer <fischer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:06:26 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/07/26 19:48:27 by fischer          ###   ########.fr       */
+/*   Updated: 2023/08/13 20:15:19 by fischer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void ft_putchar(const char c, t_data *st)
+int ft_printf(const char *fmt, ...)
 {
-        st->counter += write(1, &c, 1);
-}
-static void ft_putstr(const char *s, t_data *st)
-{
-        if (!s)
-                return (ft_putstr("(null)", st));
-        while (*s)
-                ft_putchar(*s++, st);
-}
+	va_list arg;
+	t_data st;
+	int index_fmt;
 
-static void ft_numbers(unsigned long nb, int fmt, t_data *st)
+	index_fmt = -1;
+	st = (t_data){0};
+	va_start(arg, fmt);
+
+	while (fmt[++index_fmt])
+	{
+		st.counter += write(1, &fmt[index_fmt], 1);
+	}
+	printf("%d", st.counter);
+	return (st.counter);
+}
+int main()
 {
+	ft_printf("abra%dcad%cabra", 44, 'C');
+	printf("\nabra%dcad%cabra", 44, 'C');
 }
