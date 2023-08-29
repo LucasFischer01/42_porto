@@ -3,103 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fischer <fischer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:06:26 by llopes-f          #+#    #+#             */
-/*   Updated: 2023/08/20 22:13:56 by fischer          ###   ########.fr       */
+/*   Updated: 2023/08/29 19:01:58 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void ft_putchar(const char c, t_data *st)
+static void	ft_putchar(const char c, t_data *st)
 {
-        st->counter += write(1, &c, 1);
+	st->counter += write(1, &c, 1);
 }
 
-static void ft_putstr(const char *str, t_data *st)
+static void	ft_putstr(const char *str, t_data *st)
 {
-        if (!str)
-                return (ft_putstr(("(null)"), st));
-        while (*str)
-                ft_putchar(*str++, st);
+	if (!str)
+		return (ft_putstr(("(null)"), st));
+	while (*str)
+		ft_putchar(*str++, st);
 }
 
-static void base_cv(unsigned long nb, const char fmt, t_data *st)
+static void	base_cv(unsigned long nb, const char fmt, t_data *st)
 {
-        char *base;
+	char	*base;
 
-        base = "0123456789ABCDEF";
-        if (fmt == 'x')
-                base = "0123456789abcdef";
-        if (fmt == 'u')
-                st->base_reference = 10;
-        if (fmt == 'b')
-                st->base_reference = 2;
-        if (fmt == 'o')
-                st->base_reference = 8;
-        if (nb >= st->base_reference)
-                base_cv(nb / st->base_reference, fmt, st);
-        ft_putchar(base[nb % st->base_reference], st);
+	base = "0123456789ABCDEF";
+	if (fmt == 'x')
+		base = "0123456789abcdef";
+	if (fmt == 'u')
+		st->base_reference = 10;
+	if (fmt == 'b')
+		st->base_reference = 2;
+	if (fmt == 'o')
+		st->base_reference = 8;
+	if (nb >= st->base_reference)
+		base_cv(nb / st->base_reference, fmt, st);
+	ft_putchar(base[nb % st->base_reference], st);
 }
 
-static void id_flags(char fmt, t_data *st, va_list arg)
+static void	id_flags(char fmt, t_data *st, va_list arg)
 {
-        if (fmt == 'c')
-                ft_putchar(va_arg(arg, int), st);
-        if (fmt == 's')
-                ft_putstr(va_arg(arg, char *), st);
-        if (fmt == 'p')
-        {
-                st->temp = va_arg(arg, long);
-                if (st->temp == 0)
-                        return (ft_putstr("(nil)", st));
-                ft_putstr("0x", st);
-                base_cv(st->temp, 'x', st);
-        }
-        if (fmt == 'i' || fmt == 'd')
-        {
-                st->temp = va_arg(arg, int);
-                if (st->temp < 0)
-                {
-                        ft_putchar('-', st);
-                        st->temp *= -1;
-                }
-                base_cv(st->temp, 'u', st);
-        }
-        if (fmt == 'x' || fmt == 'X' || fmt == 'u' || fmt == 'b' || fmt == 'o')
-                base_cv(va_arg(arg, unsigned int), fmt, st);
+	if (fmt == 'c')
+		ft_putchar(va_arg(arg, int), st);
+	if (fmt == 's')
+		ft_putstr(va_arg(arg, char *), st);
+	if (fmt == 'p')
+	{
+		st->temp = va_arg(arg, long);
+		if (st->temp == 0)
+			return (ft_putstr("(nil)", st));
+		ft_putstr("0x", st);
+		base_cv(st->temp, 'x', st);
+	}
+	if (fmt == 'i' || fmt == 'd')
+	{
+		st->temp = va_arg(arg, int);
+		if (st->temp < 0)
+		{
+			ft_putchar('-', st);
+			st->temp *= -1;
+		}
+		base_cv(st->temp, 'u', st);
+	}
+	if (fmt == 'x' || fmt == 'X' || fmt == 'u' || fmt == 'b' || fmt == 'o')
+		base_cv(va_arg(arg, unsigned int), fmt, st);
 }
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
-        va_list arg;
-        t_data st;
+	va_list	arg;
+	t_data	st;
 
-        st = (t_data){0};
-        st.index_fmt = -1;
-        va_start(arg, fmt);
-        st.base_reference = 16;
-        while (fmt[++st.index_fmt])
-        {
-                if (fmt[st.index_fmt] == '%')
-                {
-                        if (fmt[++st.index_fmt] == '%')
-                                ft_putchar('%', &st);
-                        else
-                                id_flags(fmt[st.index_fmt], &st, arg);
-                }
-                else
-                        ft_putchar(fmt[st.index_fmt], &st);
-        }
-        va_end(arg);
-        return (st.counter);
-}
-
-int main()
-{
-        ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0
-,0 ,0, 42, 0);
-        printf("\nprintf\n%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0
-,0 ,0, 42, 0);
+	st = (t_data){0};
+	st.index_fmt = -1;
+	va_start(arg, fmt);
+	while (fmt[++st.index_fmt])
+	{
+		st.base_reference = 16;
+		if (fmt[st.index_fmt] == '%')
+		{
+			if (fmt[++st.index_fmt] == '%')
+				ft_putchar('%', &st);
+			else
+				id_flags(fmt[st.index_fmt], &st, arg);
+		}
+		else
+			ft_putchar(fmt[st.index_fmt], &st);
+	}
+	va_end(arg);
+	return (st.counter);
 }
