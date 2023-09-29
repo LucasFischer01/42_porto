@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fischer <fischer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:53:30 by fischer           #+#    #+#             */
-/*   Updated: 2023/09/20 21:30:56 by fischer          ###   ########.fr       */
+/*   Updated: 2023/09/29 17:02:57 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,21 @@
 
 //	Librairies	//
 # include <stdio.h>
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+# include <stdbool.h>
 
 //	Structures	//
+
+typedef	struct s_stack
+{
+	int	value;
+	unsigned int	index;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}	t_stack;
+
 
 #endif

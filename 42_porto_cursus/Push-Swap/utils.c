@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llopes-f <llopes-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 20:24:44 by fischer           #+#    #+#             */
-/*   Updated: 2023/09/29 19:20:41 by llopes-f         ###   ########.fr       */
+/*   Created: 2023/09/29 19:22:03 by llopes-f          #+#    #+#             */
+/*   Updated: 2023/09/29 19:22:16 by llopes-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 
-
-
-int main(int argc, char *argv[])
+int	ft_atoi(char *str)
 {
-	int cont = 1;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	int	i;
+	int	sign;
+	int	result;
 
-	
-	
-	if (argc < 2)
-		return (0);
-	while (cont < argc)
+	result = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		printf("%s\n", argv[cont]);
-		cont++;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }
